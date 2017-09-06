@@ -1,0 +1,29 @@
+{
+  "name": "yilai",
+  "version": "0.1.0",
+  "description": "Yeelight Lights FrontEnd",
+  "main": "index.js",
+  "engines": {
+    "node": "8.4.0",
+    "npm": "5.4.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pulento/yilai.git"
+  },
+  "keywords": ["Yeelight", "Controller", "Node", "React", "Express"],
+  "author": "Juan J. Sierralta",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/pulento/yilai/issues"
+  },
+  "homepage": "https://github.com/pulento/yilai#readme",
+  "dependencies": {
+    "debug": "^3.0.1",
+    "express": "^4.15.4"
+  }
+}
