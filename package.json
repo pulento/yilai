@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -30,7 +31,8 @@
   "homepage": "https://github.com/pulento/yilai#readme",
   "dependencies": {
     "debug": "^3.0.1",
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "nodemon": "^1.12.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
