@@ -2,11 +2,10 @@ module.exports = {
   global: {
     production: false,
     systemUser: "node",
-    cors: true
+    cors: false
   },
 
-  yee: {
-    periodic_search: 60,
-    refresh: 130
+  yilai: {
+    periodic_search: 60
   }
 };

@@ -4,7 +4,7 @@ console.log("Yeelight FrontEnd Server starting!");
 const express = require("express");
 const debug = require("debug")("yilai");
 const path = require("path");
-const yeeConf = require(path.join(__dirname, "config"));
+const yilaiConf = require(path.join(__dirname, "config"));
 
 // Yeelight
 const YeelightSearch = require("yeelight-wifi");
@@ -12,7 +12,7 @@ const yeelightSearch = new YeelightSearch();
 
 var app = express();
 
-if (yeeConf.global.cors) {
+if (yilaiConf.global.cors) {
   // Allow CORS
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -39,7 +39,7 @@ app.get("/", (req, res) => {
 });
 
 // Routes
-require("./routes/light")(app);
+require("./routes/light")(app, yeelightSearch);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -129,7 +129,7 @@ function refreshTimer() {
   });
 }
 
-setInterval(lightsTimer, yeeConf.yee.periodic_search * 1000);
+setInterval(lightsTimer, yilaiConf.yee.periodic_search * 1000);
 
 process.on("uncaughtException", function(err) {
   console.error(new Date().toUTCString() + " uncaughtException:", err.message);
