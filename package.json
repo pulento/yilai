@@ -9,20 +9,16 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/pulento/yilai.git"
   },
-  "keywords": [
-    "Yeelight",
-    "Controller",
-    "Node",
-    "React",
-    "Express"
-  ],
+  "keywords": ["Yeelight", "Controller", "Node", "React", "Express"],
   "author": "Juan J. Sierralta",
   "license": "GPL-2.0",
   "bugs": {
@@ -30,6 +26,7 @@
   },
   "homepage": "https://github.com/pulento/yilai#readme",
   "dependencies": {
+    "concurrently": "^3.5.0",
     "debug": "^3.0.1",
     "express": "^4.15.4",
     "nodemon": "^1.12.1"
