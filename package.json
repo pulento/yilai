@@ -36,7 +36,7 @@
     "debug": "^3.0.1",
     "express": "^4.15.4",
     "nodemon": "^1.12.1",
-    "yeelight-wifi": "node_modules/yeelight-wifi/"
+    "yeelight-wifi": "file:node_modules/yeelight-wifi"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
