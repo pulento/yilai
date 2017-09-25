@@ -1,6 +1,7 @@
 // Light routes
+const debug = require("debug")("yilai");
 
-module.exports = app => {
+module.exports = (app, yeelightSearch) => {
   // List lights or light props
   app.get("/light/:light?", function(req, res) {
     var lights = [];
