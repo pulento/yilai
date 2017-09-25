@@ -129,7 +129,7 @@ function refreshTimer() {
   });
 }
 
-setInterval(lightsTimer, yilaiConf.yee.periodic_search * 1000);
+setInterval(lightsTimer, yilaiConf.yilai.periodic_search * 1000);
 
 process.on("uncaughtException", function(err) {
   console.error(new Date().toUTCString() + " uncaughtException:", err.message);
