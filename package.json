@@ -18,7 +18,13 @@
     "type": "git",
     "url": "git+ssh://git@github.com/pulento/yilai.git"
   },
-  "keywords": ["Yeelight", "Controller", "Node", "React", "Express"],
+  "keywords": [
+    "Yeelight",
+    "Controller",
+    "Node",
+    "React",
+    "Express"
+  ],
   "author": "Juan J. Sierralta",
   "license": "GPL-2.0",
   "bugs": {
@@ -29,7 +35,8 @@
     "concurrently": "^3.5.0",
     "debug": "^3.0.1",
     "express": "^4.15.4",
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "yeelight-wifi": "node_modules/yeelight-wifi/"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
