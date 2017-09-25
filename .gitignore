@@ -229,7 +229,10 @@ coverage
 build/Release
 
 # Dependency directories
-node_modules
+node_modules/*
+client/node_modules/*
+# Exception for our own yeelight-wifi fork
+!node_modules/yeelight-wifi
 jspm_packages
 
 # Optional npm cache directory

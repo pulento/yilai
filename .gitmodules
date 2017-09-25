@@ -1,0 +1,3 @@
+[submodule "node_modules/yeelight-wifi"]
+	path = node_modules/yeelight-wifi
+	url = https://github.com/pulento/yeelight-wifi.git
