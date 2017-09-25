@@ -1,0 +1,15 @@
+{
+  "short_name": "Yeelight Frontend App",
+  "name": "App to control Yeelight LED bulbs",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

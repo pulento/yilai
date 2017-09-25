@@ -1,0 +1,39 @@
+.lightbox {
+  width: 200px;
+  border: 2px solid black;
+  padding: 5px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.lightbox:hover {
+  background-color: #eee;
+}
+
+.light-input-name {
+  width: 150px;
+  border: 0px;
+  outline: 0;
+  cursor: pointer;
+}
+
+.color-picker {
+  width: 32px;
+  height: 32px;
+  outline: 0;
+  float: right;
+}
+
+.color-picker-btn {
+  background: url(/images/cpicker.png);
+  width: 32px;
+  height: 32px;
+  border: 0px;
+  padding: 0px;
+  outline: 0;
+  float: right;
+}
+
+.color-picker-btn:focus {
+  outline: 0;
+}
