@@ -9,7 +9,8 @@ import App from "./components/app";
 
 ReactDOM.render(
   //<Provider store={createStoreWithMiddleware(reducers)}>
-  <App lightserver="http://localhost:3000" />,
+  // You can point FE to another API server else leave it blank
+  <App lightserver="" />,
   //</Provider>
   document.querySelector(".container")
 );
