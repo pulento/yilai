@@ -36,32 +36,27 @@ export default class Light extends Component {
     this.setState({ label: event.target.value });
   };
 
-  onPowerClick = event => {
+  onPowerClick = async event => {
     event.preventDefault();
     console.log(event);
-    axios
-      .get(`${this.baseurl}/light/${this.props.light.id}/toggle`)
-      .then(res => {
-        sleep(pausetime).then(() => {
-          this.getLightState().then(() => {
-            console.log("Light State: ");
-            console.log(this.state.light);
-            this.setBackColor();
-          });
-        });
-      });
+    await axios.get(`${this.baseurl}/light/${this.props.light.id}/toggle`);
+    await sleep(pausetime);
+    await this.getLightState();
+    console.log("Light State: ");
+    console.log(this.state.light);
+    this.setBackColor();
   };
 
   onUpClick = event => {
     event.preventDefault();
-    let newbright = this.state.light.bright + 10;
+    var newbright = parseInt(this.state.light.bright, 10) + 10;
     if (newbright >= 100) newbright = 100;
     this.setBrightness(newbright);
   };
 
   onDownClick = event => {
     event.preventDefault();
-    let newbright = this.state.light.bright - 10;
+    var newbright = parseInt(this.state.light.bright, 10) - 10;
     if (newbright <= 1) newbright = 1;
     this.setBrightness(newbright);
   };
@@ -76,23 +71,21 @@ export default class Light extends Component {
     this.setState({ displayColorPicker: false });
   };
 
-  onColorChange = color => {
+  onColorChange = async color => {
     var mycolor = color.hex.replace("#", "");
-    axios
-      .get(`${this.baseurl}/light/${this.props.light.id}/color/${mycolor}`)
-      .then(res => {
-        console.log(res);
-        sleep(pausetime).then(() => {
-          this.getLightState().then(() => {
-            console.log("Light State: ");
-            console.log(this.state.light);
-            mycolor = "#" + this.state.light.rgb.toString(16);
-            console.log(mycolor);
-            //this.setBackColor();
-            this.setState({ backcolor: mycolor });
-          });
-        });
-      });
+    const res = await axios.get(
+      `${this.baseurl}/light/${this.props.light.id}/color/${mycolor}`
+    );
+
+    console.log(res);
+    await sleep(pausetime);
+    await this.getLightState();
+    console.log("Light State: ");
+    console.log(this.state.light);
+    mycolor = "#" + this.state.light.rgb.toString(16);
+    console.log(mycolor);
+    //this.setBackColor();
+    this.setState({ backcolor: mycolor });
   };
 
   onDoubleClick = event => {
@@ -100,44 +93,34 @@ export default class Light extends Component {
     console.log(event);
   };
 
-  onSubmit = event => {
+  onSubmit = async event => {
     event.preventDefault();
     console.log(this.state.label);
 
     // Set name
-    axios
-      .get(
-        `${this.baseurl}/light/${this.props.light.id}/setname/${this.state
-          .label}`
-      )
-      .then(res => {
-        sleep(pausetime).then(() => {
-          this.getLightState().then(() => {
-            console.log("Light State: ");
-            console.log(this.state.light);
-            //this.setBackColor();
-          });
-        });
-      });
+    await axios.get(
+      `${this.baseurl}/light/${this.props.light.id}/setname/${this.state.label}`
+    );
+    await sleep(pausetime);
+    await this.getLightState();
+    console.log("Light State: ");
+    console.log(this.state.light);
+    //this.setBackColor();
+
     // Remove focus
     this.nameInput.blur();
   };
 
-  setBrightness(bright) {
+  async setBrightness(bright) {
     if (bright >= 1 && bright <= 100) {
-      axios
-        .get(
-          `${this.baseurl}/light/${this.props.light.id}/brightness/${bright}`
-        )
-        .then(res => {
-          sleep(pausetime).then(() => {
-            this.getLightState().then(() => {
-              console.log("Light State: ");
-              console.log(this.state.light);
-              this.setBackColor();
-            });
-          });
-        });
+      await axios.get(
+        `${this.baseurl}/light/${this.props.light.id}/brightness/${bright}`
+      );
+      await sleep(pausetime);
+      await this.getLightState();
+      console.log("Light State: ");
+      console.log(this.state.light);
+      this.setBackColor();
     }
   }
 
