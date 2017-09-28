@@ -116,9 +116,16 @@ export default class Light extends Component {
 
   setBackColor() {
     if (this.state.light.power === "on") {
-      this.setState({
-        backcolor: `hsl(60,100%,${this.state.light.bright * 0.6 + 20}%)`
-      });
+      if (parseInt(this.state.light.color_mode, 10) === 2) {
+        this.setState({
+          backcolor: `hsl(60,100%,${this.state.light.bright * 0.6 + 20}%)`
+        });
+      } else {
+        // Color background
+        const mycolor = "#" + this.state.light.rgb.toString(16);
+        console.log(mycolor);
+        this.setState({ backcolor: mycolor });
+      }
     } else {
       this.setState({ backcolor: "white" });
     }
