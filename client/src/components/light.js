@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 //import ReactDOM from "react-dom";
 import axios from "axios";
-import { ChromePicker } from "react-color";
+import { HuePicker } from "react-color";
 
 export default class Light extends Component {
   constructor(props) {
@@ -74,7 +74,7 @@ export default class Light extends Component {
     await this.getLightState();
     console.log("Light State: ");
     console.log(this.state.light);
-    mycolor = "#" + this.state.light.rgb.toString(16);
+    mycolor = "#" + mycolor;
     console.log(mycolor);
     //this.setBackColor();
     this.setState({ backcolor: mycolor });
@@ -122,7 +122,11 @@ export default class Light extends Component {
         });
       } else {
         // Color background
-        const mycolor = "#" + this.state.light.rgb.toString(16);
+        let mycolor = parseInt(this.state.light.rgb, 10).toString(16);
+        while (mycolor.length < 6) {
+            mycolor = "0" + mycolor;
+        }
+        mycolor = "#" + mycolor;
         console.log(mycolor);
         this.setState({ backcolor: mycolor });
       }
@@ -197,7 +201,7 @@ export default class Light extends Component {
               {this.state.displayColorPicker ? (
                 <div style={popover}>
                   <div style={cover} onClick={this.onColorClose} />
-                  <ChromePicker
+                  <HuePicker
                     color={this.state.backcolor}
                     onChangeComplete={this.onColorChange}
                   />
