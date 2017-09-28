@@ -3,6 +3,8 @@ Yeelight Lights Front/Backend Server
 
 Simple Web App to control Yeelight WiFi LED bulbs
 
+![screenshot](https://github.com/pulento/yilai/raw/master/client/public/images/yilai_landing.png)
+
 ## Install
 
 Clone repository
