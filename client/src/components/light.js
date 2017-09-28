@@ -3,6 +3,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import { HuePicker } from "react-color";
 
+function sleep(ms = 0) {
+  return new Promise(r => setTimeout(r, ms));
+}
+
 export default class Light extends Component {
   constructor(props) {
     super(props);
@@ -34,6 +38,7 @@ export default class Light extends Component {
     event.preventDefault();
     console.log(event);
     await axios.get(`${this.baseurl}/light/${this.props.light.id}/toggle`);
+    await sleep(20);
     await this.getLightState();
     console.log("Light State: ");
     console.log(this.state.light);
@@ -70,6 +75,7 @@ export default class Light extends Component {
     await axios.get(
       `${this.baseurl}/light/${this.props.light.id}/temperature/4000`
     );
+    await sleep(20);
     await this.getLightState();
     this.setBackColor();
   }
@@ -81,6 +87,7 @@ export default class Light extends Component {
     );
 
     console.log(res);
+    await sleep(20);
     await this.getLightState();
     console.log("Light State: ");
     console.log(this.state.light);
@@ -103,6 +110,7 @@ export default class Light extends Component {
     await axios.get(
       `${this.baseurl}/light/${this.props.light.id}/setname/${this.state.label}`
     );
+    await sleep(20);
     await this.getLightState();
     console.log("Light State: ");
     console.log(this.state.light);
@@ -117,6 +125,7 @@ export default class Light extends Component {
       await axios.get(
         `${this.baseurl}/light/${this.props.light.id}/brightness/${bright}`
       );
+      await sleep(20);
       await this.getLightState();
       console.log("Light State: ");
       console.log(this.state.light);
