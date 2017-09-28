@@ -64,6 +64,16 @@ export default class Light extends Component {
     this.setState({ displayColorPicker: false });
   };
 
+  onBoxDoubleClk = async event => {
+    event.preventDefault();
+    // Reset to white
+    await axios.get(
+      `${this.baseurl}/light/${this.props.light.id}/temperature/4000`
+    );
+    await this.getLightState();
+    this.setBackColor();
+  }
+
   onColorChange = async color => {
     var mycolor = color.hex.replace("#", "");
     const res = await axios.get(
@@ -181,7 +191,7 @@ export default class Light extends Component {
     };
 
     return (
-      <div className="lightbox" style={lightstyle}>
+      <div className="lightbox" style={lightstyle} onDoubleClick={this.onBoxDoubleClk}>
         <div className="upper-lightbox" style={{ height: "32px" }}>
           <form className="light-input-name" onSubmit={this.onSubmit}>
             <input
