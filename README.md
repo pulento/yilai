@@ -16,19 +16,19 @@ git submodule init
 git submodule update
 ```
 
-Instal server modules
+Instal modules, please note that this will install client modules also
 ```
 npm install
 ```
 
-And client modules..
+Build yeelight-wifi fork
 ```
-cd client
-npm install
+cd node_modules/yeelight-wifi/
+npm run build
 ```
+
 Run :)
 ```
-cd ..
+cd ../..
 npm run dev
 ```
-
