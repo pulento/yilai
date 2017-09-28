@@ -3,12 +3,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import { ChromePicker } from "react-color";
 
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-const pausetime = 80;
-
 export default class Light extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +34,6 @@ export default class Light extends Component {
     event.preventDefault();
     console.log(event);
     await axios.get(`${this.baseurl}/light/${this.props.light.id}/toggle`);
-    await sleep(pausetime);
     await this.getLightState();
     console.log("Light State: ");
     console.log(this.state.light);
@@ -78,7 +71,6 @@ export default class Light extends Component {
     );
 
     console.log(res);
-    await sleep(pausetime);
     await this.getLightState();
     console.log("Light State: ");
     console.log(this.state.light);
@@ -101,7 +93,6 @@ export default class Light extends Component {
     await axios.get(
       `${this.baseurl}/light/${this.props.light.id}/setname/${this.state.label}`
     );
-    await sleep(pausetime);
     await this.getLightState();
     console.log("Light State: ");
     console.log(this.state.light);
@@ -116,7 +107,6 @@ export default class Light extends Component {
       await axios.get(
         `${this.baseurl}/light/${this.props.light.id}/brightness/${bright}`
       );
-      await sleep(pausetime);
       await this.getLightState();
       console.log("Light State: ");
       console.log(this.state.light);
@@ -194,18 +184,21 @@ export default class Light extends Component {
               onDoubleClick={this.onDoubleClick}
             />
           </form>
-          <div className="color-picker">
-            <button className="color-picker-btn" onClick={this.onColorClick} />
-            {this.state.displayColorPicker ? (
-              <div style={popover}>
-                <div style={cover} onClick={this.onColorClose} />
-                <ChromePicker
-                  color={this.state.backcolor}
-                  onChangeComplete={this.onColorChange}
-                />
-              </div>
-            ) : null}
-          </div>
+          {this.state.light.model === "color" ? (
+            <div className="color-picker">
+              <button className="color-picker-btn" onClick={this.onColorClick} />
+              {this.state.displayColorPicker ? (
+                <div style={popover}>
+                  <div style={cover} onClick={this.onColorClose} />
+                  <ChromePicker
+                    color={this.state.backcolor}
+                    onChangeComplete={this.onColorChange}
+                  />
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+
         </div>
         <div className="lower-lightbox">
           <button style={{ fontSize: "20px" }} onClick={this.onPowerClick}>
