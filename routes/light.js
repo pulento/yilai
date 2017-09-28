@@ -1,6 +1,15 @@
 // Light routes
 const debug = require("debug")("yilai");
 
+// Emitter to Promise for Async/Await
+function getResponse(yeelight) {
+  return new Promise(function(resolve, reject) {
+    yeelight.once("response", (id, result) => {
+      resolve(id);
+    });
+  });
+}
+
 module.exports = (app, yeelightSearch) => {
   // List lights or light props
   app.get("/light/:light?", function(req, res) {
@@ -64,7 +73,7 @@ module.exports = (app, yeelightSearch) => {
 
   // Manages lights commands
 
-  app.get("/light/:light/:command/:param?", function(req, res) {
+  app.get("/light/:light/:command/:param?", async (req, res) => {
     var yeelight = yeelightSearch.getYeelightById(req.params.light);
 
     if (yeelight) {
@@ -76,27 +85,22 @@ module.exports = (app, yeelightSearch) => {
       };
 
       if (req.params.command == "toggle") {
-        yeelight.toggle().then(reqid => {
-          yeelight
-            .once("response", (id, result) => {
-              res.json({ result: "ok", id: yeelight.id });
-            })
-            .catch(err => {
-              res.json({ result: "error", id: yeelight.id, msg: err.message });
-            });
-        });
+        try {
+          const reqid = await yeelight.toggle();
+          const respid = await getResponse(yeelight);
+          res.json({ result: "ok", id: yeelight.id });
+        } catch (err) {
+          res.json({ result: "error", id: yeelight.id, msg: err.message });
+        }
       } else if (req.params.command == "setname") {
         if (req.params.param) {
-          yeelight
-            .setName(req.params.param)
-            .then(reqid => {
-              yeelight.once("response", (id, result) => {
-                res.json({ result: "ok", id: yeelight.id });
-              });
-            })
-            .catch(err => {
-              res.json({ result: "error", id: yeelight.id, msg: err.message });
-            });
+          try {
+            const reqid = await yeelight.setName(req.params.param);
+            const respid = await getResponse(yeelight);
+            res.json({ result: "ok", id: yeelight.id });
+          } catch (err) {
+            res.json({ result: "error", id: yeelight.id, msg: err.message });
+          }
         } else {
           res.json({
             result: "error",
@@ -106,16 +110,13 @@ module.exports = (app, yeelightSearch) => {
         }
       } else if (req.params.command == "brightness") {
         if (req.params.param) {
-          yeelight
-            .setBrightness(req.params.param)
-            .then(reqid => {
-              yeelight.once("response", (id, result) => {
-                res.json({ result: "ok", id: yeelight.id });
-              });
-            })
-            .catch(err => {
-              res.json({ result: "error", id: yeelight.id, msg: err.message });
-            });
+          try {
+            const reqid = await yeelight.setBrightness(req.params.param);
+            const respid = await getResponse(yeelight);
+            res.json({ result: "ok", id: yeelight.id });
+          } catch (err) {
+            res.json({ result: "error", id: yeelight.id, msg: err.message });
+          }
         } else {
           res.json({
             result: "error",
@@ -125,16 +126,13 @@ module.exports = (app, yeelightSearch) => {
         }
       } else if (req.params.command == "color") {
         if (req.params.param) {
-          yeelight
-            .setRGB(req.params.param)
-            .then(reqid => {
-              yeelight.once("response", (id, result) => {
-                res.json({ result: "ok", id: yeelight.id });
-              });
-            })
-            .catch(err => {
-              res.json({ result: "error", id: yeelight.id, msg: err.message });
-            });
+          try {
+            const reqid = await yeelight.setRGB(req.params.param);
+            const respid = await getResponse(yeelight);
+            res.json({ result: "ok", id: yeelight.id });
+          } catch (err) {
+            res.json({ result: "error", id: yeelight.id, msg: err.message });
+          }
         } else {
           res.json({
             result: "error",
@@ -144,16 +142,13 @@ module.exports = (app, yeelightSearch) => {
         }
       } else if (req.params.command == "temperature") {
         if (req.params.param) {
-          yeelight
-            .setColorTemperature(req.params.param)
-            .then(reqid => {
-              yeelight.once("response", (id, result) => {
-                res.json({ result: "ok", id: yeelight.id });
-              });
-            })
-            .catch(err => {
-              res.json({ result: "error", id: yeelight.id, msg: err.message });
-            });
+          try {
+            const reqid = await yeelight.setColorTemperature(req.params.param);
+            const respid = await getResponse(yeelight);
+            res.json({ result: "ok", id: yeelight.id });
+          } catch (err) {
+            res.json({ result: "error", id: yeelight.id, msg: err.message });
+          }
         } else {
           res.json({
             result: "error",
