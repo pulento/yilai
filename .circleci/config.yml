@@ -17,13 +17,12 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - checkout
-      # Init Yeelight-WiFi fork
-      post:
-        - git submodule sync
-        - git submodule update --init || (rm -fr .git/config .git/modules && git submodule deinit -f . && git submodule update --init )
+      - checkout:
+          # Init Yeelight-WiFi fork
+          post:
+            - git submodule sync
+            - git submodule update --init || (rm -fr .git/config .git/modules && git submodule deinit -f . && git submodule update --init )
         
-
       # Download and cache dependencies
       - restore_cache:
           keys:
