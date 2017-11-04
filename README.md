@@ -18,7 +18,7 @@ git submodule init
 git submodule update
 ```
 
-Instal modules, please note that this will install client modules also
+Install modules, please note that this will install client modules also
 ```
 npm install
 ```
