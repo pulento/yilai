@@ -17,18 +17,18 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - checkout:
-          # Init Yeelight-WiFi fork
-          post:
-            - git submodule sync
-            - git submodule update --init || (rm -fr .git/config .git/modules && git submodule deinit -f . && git submodule update --init )
-        
+      - checkout
+
       # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
+      
+      # Init Yeelight-WiFi fork
+	  - run: git submodule sync
+	  - run: git submodule update --init || (rm -fr .git/config .git/modules && git submodule deinit -f . && git submodule update --init )        
       
       # Install rest of node modules
       - run: npm install
