@@ -26,11 +26,9 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run:
-        git submodule init
-        git submodule update
-        cd node_modules/yeelight-wifi/
-        npm run build
+      - run: git submodule init
+      - run: git submodule update
+      - run: cd node_modules/yeelight-wifi ; npm run build
         
       - save_cache:
           paths:
