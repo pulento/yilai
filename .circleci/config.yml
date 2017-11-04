@@ -26,15 +26,17 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
+      # Init Yeelight-WiFi fork
       - run: git submodule init
       - run: git submodule update
+      # Install rest of node modules
       - run: npm install
+      # Build Yeelight-WiFi fork
       - run: cd node_modules/yeelight-wifi ; npm run build
-        
+      # Build client
+      - run: cd client ; npm run build
+              
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
-      # run tests!
-      - run: npm run dev
