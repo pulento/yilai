@@ -27,8 +27,8 @@ jobs:
           - v1-dependencies-
       
       # Init Yeelight-WiFi fork
-	  - run: git submodule sync
-	  - run: git submodule update --init || (rm -fr .git/config .git/modules && git submodule deinit -f . && git submodule update --init )        
+      - run: git submodule sync
+      - run: git submodule update --init || (rm -fr .git/config .git/modules && git submodule deinit -f . && git submodule update --init )        
       
       # Install rest of node modules
       - run: npm install
