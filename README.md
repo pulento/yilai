@@ -1,4 +1,6 @@
 # yilai
+[![CircleCI](https://circleci.com/gh/pulento/yilai.svg?style=svg)](https://circleci.com/gh/pulento/yilai)
+
 Yeelight Lights Front/Backend Server
 
 Simple Web App to control Yeelight WiFi LED bulbs
