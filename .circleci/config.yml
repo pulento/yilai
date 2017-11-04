@@ -28,6 +28,7 @@ jobs:
 
       - run: git submodule init
       - run: git submodule update
+      - run: npm install
       - run: cd node_modules/yeelight-wifi ; npm run build
         
       - save_cache:
