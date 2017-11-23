@@ -41,6 +41,8 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
-    "babel-preset-env": "^1.6.0"
+    "babel-preset-env": "^1.6.0",
+    "gulp": "^3.9.1",
+    "sonarqube-scanner": "^2.0.2"
   }
 }
