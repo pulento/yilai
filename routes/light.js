@@ -77,13 +77,6 @@ module.exports = (app, yeelightSearch) => {
     var yeelight = yeelightSearch.getYeelightById(req.params.light);
 
     if (yeelight) {
-      let light = {
-        id: yeelight.id,
-        name: yeelight.name,
-        ct: yeelight.ct,
-        status: yeelight.status
-      };
-
       if (req.params.command == "toggle") {
         try {
           const reqid = await yeelight.toggle();
