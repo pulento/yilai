@@ -150,10 +150,8 @@ export default class Light extends Component {
     await this.getLightState();
     console.log("Light State: ");
     console.log(this.state.light);
-    mycolor = "#" + mycolor;
-    //console.log(mycolor);
+
     this.setBackColor();
-    //this.setState({ backcolor: mycolor });
   };
 
   onDoubleClick = event => {
