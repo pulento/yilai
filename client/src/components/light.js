@@ -244,8 +244,6 @@ export default class Light extends Component {
           <i className="fa fa-exclamation-circle" aria-hidden="true" />
         </button>
       );
-    } else {
-      offline = null;
     }
 
     const popover = {
