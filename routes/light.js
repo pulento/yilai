@@ -44,7 +44,7 @@ module.exports = (app, yeelightSearch) => {
       var yeelight = yeelightSearch.getYeelightById(req.params.light);
 
       if (yeelight) {
-        light = {
+        let light = {
           id: yeelight.id,
           name: yeelight.name,
           model: yeelight.model,
