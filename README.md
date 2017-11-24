@@ -1,5 +1,5 @@
 # yilai
-[![CircleCI](https://circleci.com/gh/pulento/yilai.svg?style=svg)](https://circleci.com/gh/pulento/yilai)
+[![CircleCI](https://circleci.com/gh/pulento/yilai.svg?style=svg)](https://circleci.com/gh/pulento/yilai) [![Quality Gate on SonarCloud](https://sonarcloud.io/api/badges/gate?key=yilai)](https://sonarcloud.io/dashboard/index/yilai)
 
 Yeelight Lights Front/Backend Server
 
