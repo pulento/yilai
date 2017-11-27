@@ -18,6 +18,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+	"test-ci": "npm test -- --coverage --collectCoverageFrom='[ \"src/components/*.js\" ]'",
     "eject": "react-scripts eject"
   },
   "devDependencies": {

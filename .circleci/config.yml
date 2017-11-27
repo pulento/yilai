@@ -45,3 +45,6 @@ jobs:
             - node_modules
             - client/node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+    test:
+      override:
+        - npm run test-ci
