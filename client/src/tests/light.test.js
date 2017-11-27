@@ -12,6 +12,8 @@ import React from "react";
 import Light from "../components/light";
 import renderer from "react-test-renderer";
 import axios from "axios";
+import { RGB_to_HSV } from "../components/light";
+import { HEX_to_RGB } from "../components/light";
 
 var testlight = {
   id: "0x20000000044c1e72",
@@ -40,6 +42,11 @@ describe("light.js", () => {
 
   const tree = myComp.toJSON();
 
+  // Submit light name
+  tree.children[0].children[0].props.onSubmit({
+    preventDefault: () => false
+  });
+
   // Power button click
   tree.children[1].children[0].props.onClick({
     preventDefault: () => false
@@ -65,6 +72,12 @@ describe("light.js", () => {
     preventDefault: () => false
   });
 
+  it("Set name", () => {
+    expect(axios.get).toBeCalledWith(
+      `/light/${testlight.id}/setname/${testlight.name}`
+    );
+  });
+
   it("Toggle click", () => {
     expect(axios.get).toBeCalledWith(`/light/${testlight.id}/toggle`);
   });
@@ -83,5 +96,14 @@ describe("light.js", () => {
 
   it("Color click", () => {
     expect(myComp.getInstance().state.displayColorPicker).toBe(true);
+  });
+
+  // Conversion functions
+  it("RGB to HSV", () => {
+    expect(RGB_to_HSV({ r: 255, g: 0, b: 0 })).toEqual({ h: 0, s: 1, v: 1 });
+  });
+
+  it("HEX to RGB", () => {
+    expect(HEX_to_RGB("#00fffe")).toEqual({ r: 0, g: 255, b: 254 });
   });
 });

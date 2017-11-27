@@ -12,7 +12,7 @@ function sleep(ms = 0) {
 // http://www.checkman.io/please/
 //
 // Accepts RGB object, returns HSV object
-function RGB_to_HSV(RGB) {
+export function RGB_to_HSV(RGB) {
   var r = RGB.r / 255,
     g = RGB.g / 255,
     b = RGB.b / 255;
@@ -44,7 +44,7 @@ function RGB_to_HSV(RGB) {
 }
 
 // Accepts hex string, produces RGB object
-function HEX_to_RGB(hex) {
+export function HEX_to_RGB(hex) {
   var regex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
   hex = hex.replace(regex, function(m, r, g, b) {
     return r + r + g + g + b + b;
@@ -60,7 +60,7 @@ function HEX_to_RGB(hex) {
 }
 
 // Accepts hex string, returns HSV object
-function HEX_to_HSV(hex) {
+export function HEX_to_HSV(hex) {
   return RGB_to_HSV(HEX_to_RGB(hex));
 }
 
