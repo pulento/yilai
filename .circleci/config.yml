@@ -44,6 +44,7 @@ jobs:
           paths:
             - node_modules
             - client/node_modules
+            - .sonar
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
