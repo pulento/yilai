@@ -47,5 +47,5 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run:
-        name: Code coverage
-        command: npm run test-ci
+          name: Code coverage
+          command: npm run test-ci
