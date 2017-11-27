@@ -22,9 +22,9 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+          - v2-dep-{{ checksum "package.json" }}-{{ checksum ".sonar/cache" }}
           # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+          - v2-dep-
 
       # Init Yeelight-WiFi fork
       - run: git submodule sync
@@ -45,7 +45,7 @@ jobs:
             - node_modules
             - client/node_modules
             - .sonar
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v2-dep-{{ checksum "package.json" }}-{{ checksum ".sonar/cache" }}
 
       - run:
           name: Code coverage
