@@ -39,8 +39,7 @@ describe("light.js", () => {
   );
 
   const tree = myComp.toJSON();
-  //console.log(tree);
-  console.log(RGB_to_HSV({ r: 2, g: 2, b: 2 }));
+
   // Power button click
   tree.children[1].children[0].props.onClick({
     preventDefault: () => false
