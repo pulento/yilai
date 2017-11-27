@@ -22,7 +22,7 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-          - v2-dep-{{ checksum "package.json" }}-{{ checksum "../.sonar/cache" }}
+          - v2-dep-{{ checksum "package.json" }}
           # fallback to using the latest cache if no exact match is found
           - v2-dep-
 
@@ -45,7 +45,7 @@ jobs:
             - node_modules
             - client/node_modules
             - .sonar
-          key: v2-dep-{{ checksum "package.json" }}-{{ checksum "../.sonar/cache" }}
+          key: v2-dep-{{ checksum "package.json" }}
 
       - run:
           name: Code coverage
