@@ -9,6 +9,7 @@ jest.mock("axios", () => ({
 }));
 
 import React from "react";
+import ReactDOM from "react-dom";
 import Light from "../components/light";
 import renderer from "react-test-renderer";
 import axios from "axios";
@@ -36,40 +37,46 @@ var testlight = {
 
 describe("light.js", () => {
   const lightserver = "";
-  const myComp = renderer.create(
-    <Light lightserver={lightserver} key={testlight.id} light={testlight} />
+
+  const div = document.createElement("div");
+  const myComp = ReactDOM.render(
+    <Light lightserver={lightserver} key={testlight.id} light={testlight} />,
+    div
   );
 
-  const tree = myComp.toJSON();
-
   // Submit light name
-  tree.children[0].children[0].props.onSubmit({
+  myComp.onSubmit({
     preventDefault: () => false
   });
 
   // Power button click
-  tree.children[1].children[0].props.onClick({
+  myComp.onPowerClick({
     preventDefault: () => false
   });
 
   // Up button click
-  tree.children[1].children[1].props.onClick({
+  myComp.onUpClick({
     preventDefault: () => false
   });
 
   // Down button click
-  tree.children[1].children[2].props.onClick({
+  myComp.onDownClick({
     preventDefault: () => false
   });
 
   // Double click on box
-  tree.props.onDoubleClick({
+  myComp.onBoxDoubleClk({
     preventDefault: () => false
   });
 
   // Color button
-  tree.children[0].children[1].children[0].props.onClick({
+  myComp.onColorClick({
     preventDefault: () => false
+  });
+
+  // Color change to blue
+  myComp.onColorChange({
+    hex: "005dff"
   });
 
   it("Set name", () => {
@@ -90,12 +97,16 @@ describe("light.js", () => {
     expect(axios.get).toBeCalledWith(`/light/${testlight.id}/brightness/90`);
   });
 
-  it("Down click", () => {
+  it("Double click", () => {
     expect(axios.get).toBeCalledWith(`/light/${testlight.id}/temperature/4000`);
   });
 
   it("Color click", () => {
-    expect(myComp.getInstance().state.displayColorPicker).toBe(true);
+    expect(myComp.state.displayColorPicker).toBe(true);
+  });
+
+  it("Color change", () => {
+    expect(axios.get).toBeCalledWith(`/light/${testlight.id}/color/005dff`);
   });
 
   // Conversion functions
