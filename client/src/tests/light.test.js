@@ -116,6 +116,15 @@ describe("light.js", () => {
     expect(myComp.state.displayColorPicker).toBe(true);
   });
 
+  it("Label change", () => {
+    // Color button
+    myComp.onChange({
+      preventDefault: () => false,
+      target: { value: "Cool" }
+    });
+    expect(myComp.state.label).toBe("Cool");
+  });
+
   it("Color change", async () => {
     // Color change to blue
     await myComp.onColorChange({
