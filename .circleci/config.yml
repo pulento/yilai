@@ -37,16 +37,16 @@ jobs:
       - run: cd node_modules/yeelight-wifi ; npm run build
       # Build client
       - run: cd client ; npm run build
-      # Run Gulp
-      - run: gulp
-
+      # Save cache
       - save_cache:
           paths:
             - node_modules
             - client/node_modules
             - ../.sonar
           key: v3-dep-{{ checksum "package.json" }}
-
+      # Code coverage
       - run:
           name: Code coverage
           command: npm run test-ci
+      # Run Gulp for SonarQube
+      - run: gulp
