@@ -10,7 +10,7 @@ jest.mock("axios", () => ({
         power: "on",
         bright: "100",
         rgb: "16711680",
-        color_mode: "2",
+        color_mode: "1",
         hue: "359",
         sat: "100",
         ct: "4000",
