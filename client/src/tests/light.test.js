@@ -150,4 +150,9 @@ describe("light.js", () => {
   it("HEX to RGB", () => {
     expect(HEX_to_RGB("#00fffe")).toEqual({ r: 0, g: 255, b: 254 });
   });
+
+  it("Black HSV", () => {
+    expect(RGB_to_HSV({ r: 0, g: 0, b: 0 })).toEqual({ h: 0, s: 0, v: 0 });
+  });
+
 });
