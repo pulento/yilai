@@ -7,7 +7,7 @@ gulp.task("default", function(callback) {
       serverUrl: "https://sonarcloud.io",
       token: "b8c8270f28cb092a118b634f39e046f026ee0a04",
       options: {
-        "sonar.organization": "pulento-github"
+        "sonar.organization": "pulento-github",
         "sonar.javascript.lcov.reportPaths": "client/coverage"
       }
     },
