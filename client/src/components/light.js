@@ -104,18 +104,18 @@ export default class Light extends Component {
     this.setBackColor();
   };
 
-  onUpClick = event => {
+  onUpClick = async event => {
     event.preventDefault();
     var newbright = parseInt(this.state.light.bright, 10) + 10;
-    if (newbright >= 100) newbright = 100;
-    this.setBrightness(newbright);
+    if (newbright > 100) newbright = 100;
+    await this.setBrightness(newbright);
   };
 
-  onDownClick = event => {
+  onDownClick = async event => {
     event.preventDefault();
     var newbright = parseInt(this.state.light.bright, 10) - 10;
-    if (newbright <= 1) newbright = 1;
-    this.setBrightness(newbright);
+    if (newbright < 1) newbright = 1;
+    await this.setBrightness(newbright);
   };
 
   onColorClick = event => {
@@ -177,17 +177,32 @@ export default class Light extends Component {
     this.nameInput.blur();
   };
 
-  async setBrightness(bright) {
-    if (bright >= 1 && bright <= 100) {
-      await axios.get(
-        `${this.baseurl}/light/${this.props.light.id}/brightness/${bright}`
-      );
-      await sleep(20);
-      await this.getLightState();
-      console.log("Light State: ");
-      console.log(this.state.light);
-      this.setBackColor();
-    }
+  setBrightness(bright) {
+    return new Promise((resolve, reject) => {
+      if (bright >= 1 && bright <= 100) {
+        axios
+          .get(
+            `${this.baseurl}/light/${this.props.light.id}/brightness/${bright}`
+          )
+          .then(() => {
+            return sleep(20);
+          })
+          .then(() => {
+            return this.getLightState();
+          })
+          .then(() => {
+            console.log("Light State: ");
+            console.log(this.state.light);
+            this.setBackColor();
+            resolve();
+          })
+          .catch(error => {
+            reject(error);
+          });
+      } else {
+        reject(`Invalid brightness value: ${bright}`);
+      }
+    });
   }
 
   setBackColor() {

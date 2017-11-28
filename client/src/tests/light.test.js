@@ -44,69 +44,69 @@ describe("light.js", () => {
     div
   );
 
-  // Submit light name
-  myComp.onSubmit({
-    preventDefault: () => false
+  it("Up click", async () => {
+    // Up button click
+    await myComp.onUpClick({
+      preventDefault: () => false
+    });
+    expect(axios.get).toBeCalledWith(`/light/${testlight.id}/brightness/100`);
+    expect(axios.get).toBeCalledWith(`/light/${testlight.id}`);
   });
 
-  // Power button click
-  myComp.onPowerClick({
-    preventDefault: () => false
-  });
-
-  // Up button click
-  myComp.onUpClick({
-    preventDefault: () => false
-  });
-
-  // Down button click
-  myComp.onDownClick({
-    preventDefault: () => false
-  });
-
-  // Double click on box
-  myComp.onBoxDoubleClk({
-    preventDefault: () => false
-  });
-
-  // Color button
-  myComp.onColorClick({
-    preventDefault: () => false
-  });
-
-  // Color change to blue
-  myComp.onColorChange({
-    hex: "005dff"
-  });
-
-  it("Set name", () => {
+  it("Set name", async () => {
+    // Submit light name
+    await myComp.onSubmit({
+      preventDefault: () => false
+    });
     expect(axios.get).toBeCalledWith(
       `/light/${testlight.id}/setname/${testlight.name}`
     );
+    expect(axios.get).toBeCalledWith(`/light/${testlight.id}`);
   });
 
-  it("Toggle click", () => {
-    expect(axios.get).toBeCalledWith(`/light/${testlight.id}/toggle`);
-  });
-
-  it("Up click", () => {
-    expect(axios.get).toBeCalledWith(`/light/${testlight.id}/brightness/100`);
-  });
-
-  it("Down click", () => {
+  it("Down click", async () => {
+    myComp.setState({ light: { bright: "100" } });
+    // Down button click
+    await myComp.onDownClick({
+      preventDefault: () => false
+    });
     expect(axios.get).toBeCalledWith(`/light/${testlight.id}/brightness/90`);
+    expect(axios.get).toBeCalledWith(`/light/${testlight.id}`);
   });
 
-  it("Double click", () => {
+  it("Toggle click", async () => {
+    // Power button click
+    await myComp.onPowerClick({
+      preventDefault: () => false
+    });
+    expect(axios.get).toBeCalledWith(`/light/${testlight.id}/toggle`);
+    expect(axios.get).toBeCalledWith(`/light/${testlight.id}`);
+  });
+
+  it("Double click", async () => {
+    // Double click on box
+    await myComp.onBoxDoubleClk({
+      preventDefault: () => false
+    });
     expect(axios.get).toBeCalledWith(`/light/${testlight.id}/temperature/4000`);
+    expect(axios.get).toBeCalledWith(`/light/${testlight.id}`);
   });
 
   it("Color click", () => {
+    // Color button
+    myComp.onColorClick({
+      preventDefault: () => false
+    });
     expect(myComp.state.displayColorPicker).toBe(true);
   });
 
-  it("Color change", () => {
+  it("Color change", async () => {
+    // Color change to blue
+    await myComp.onColorChange({
+      hex: "005dff"
+    });
     expect(axios.get).toBeCalledWith(`/light/${testlight.id}/color/005dff`);
+    expect(axios.get).toBeCalledWith(`/light/${testlight.id}`);
   });
 
   // Conversion functions
