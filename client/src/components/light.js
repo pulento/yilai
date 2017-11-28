@@ -155,8 +155,6 @@ export default class Light extends Component {
   };
 
   onDoubleClick = event => {
-    event.preventDefault();
-    console.log(event);
   };
 
   onSubmit = async event => {
@@ -171,7 +169,6 @@ export default class Light extends Component {
     await this.getLightState();
     console.log("Light State: ");
     console.log(this.state.light);
-    //this.setBackColor();
 
     // Remove focus
     this.nameInput.blur();
