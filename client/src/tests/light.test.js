@@ -35,7 +35,6 @@ import { HEX_to_RGB } from "../components/light";
 
 var testlight = {
   id: "0x20000000044c1e72",
-  name: "Kids",
   model: "color",
   power: "on",
   bright: "100",
@@ -76,7 +75,7 @@ describe("light.js", () => {
       preventDefault: () => false
     });
     expect(axios.get).toBeCalledWith(
-      `/light/${testlight.id}/setname/${testlight.name}`
+      `/light/${testlight.id}/setname/${testlight.id}`
     );
     expect(axios.get).toBeCalledWith(`/light/${testlight.id}`);
   });
