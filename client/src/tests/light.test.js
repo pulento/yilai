@@ -3,7 +3,24 @@ jest.mock("axios", () => ({
   get: jest.fn(req => {
     console.log(req);
     return Promise.resolve({
-      data: { result: "ok" }
+      data: {
+        id: "0x20000000044c1e72",
+        name: "Kids",
+        model: "color",
+        power: "off",
+        bright: "100",
+        rgb: "16711680",
+        color_mode: "2",
+        hue: "359",
+        sat: "100",
+        ct: "4000",
+        flowing: "0",
+        delayoff: "0",
+        flow_params: "",
+        music_on: "0",
+        status: 3,
+        lastupdate: 1411732258133
+      }
     });
   })
 }));
