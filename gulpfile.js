@@ -11,7 +11,7 @@ gulp.task("default", function(callback) {
         "sonar.javascript.lcov.reportPaths": "client/coverage/lcov.info",
         "sonar.exclusions": "**/coverage/**, **/build/**",
         "sonar.coverage.exclusions":
-          "**/tests/**, **/routes/**, index.js, gulpfile.js, config.js"
+          "**/tests/**, **/routes/**, **/node_modules/**, index.js, gulpfile.js, config.js"
       }
     },
     callback
