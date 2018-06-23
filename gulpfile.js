@@ -9,7 +9,7 @@ gulp.task("default", function(callback) {
       options: {
         "sonar.organization": "pulento-github",
         "sonar.javascript.lcov.reportPaths": "client/coverage/lcov.info",
-        "sonar.exclusions": "**/coverage/**, **/build/**",
+        "sonar.exclusions": "**/coverage/**, **/build/**, **/node_modules/**",
         "sonar.coverage.exclusions":
           "**/tests/**, **/routes/**, **/node_modules/**, index.js, gulpfile.js, config.js"
       }
