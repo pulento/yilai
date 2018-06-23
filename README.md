@@ -36,3 +36,15 @@ Run :)
 cd ../..
 npm run dev
 ```
+
+## Docker
+
+Build image
+```
+docker build -t pulento/yilai .
+```
+
+Run it
+```
+docker run -it --net=host -d pulento/yilai
+```
