@@ -1,5 +1,5 @@
 # yilai
-[![CircleCI](https://circleci.com/gh/pulento/yilai.svg?style=svg)](https://circleci.com/gh/pulento/yilai) [![Coverage Status](https://coveralls.io/repos/github/pulento/yilai/badge.svg?branch=master)](https://coveralls.io/github/pulento/yilai?branch=master) [![Quality Gate on SonarCloud](https://sonarcloud.io/api/badges/gate?key=yilai)](https://sonarcloud.io/dashboard/index/yilai)
+[![CircleCI](https://circleci.com/gh/pulento/yilai.svg?style=svg)](https://circleci.com/gh/pulento/yilai) [![Coverage Status](https://coveralls.io/repos/github/pulento/yilai/badge.svg?branch=master)](https://coveralls.io/github/pulento/yilai?branch=master)[![Quality Gate on SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=yilai&metric=alert_status)](https://sonarcloud.io/dashboard/index/yilai)
 
 Yeelight Lights Front/Backend Server
 
